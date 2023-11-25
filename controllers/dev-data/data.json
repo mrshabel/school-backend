@@ -1,0 +1,49 @@
+{
+  "teachers": [
+    {
+      "name": "John Doe",
+      "class": "Mathematics",
+      "displayImage": "john_doe_image.jpg",
+      "address": "123 Main Street, Cityville",
+      "dob": "1980-05-15",
+      "gender": "male",
+      "createdAt": "2023-11-25T00:00:00Z"
+    },
+    {
+      "name": "Jane Smith",
+      "class": "English",
+      "displayImage": "jane_smith_image.jpg",
+      "address": "456 Oak Avenue, Townsville",
+      "dob": "1985-09-20",
+      "gender": "female",
+      "createdAt": "2023-11-25T00:00:00Z"
+    },
+    {
+      "name": "Robert Johnson",
+      "class": "Science",
+      "displayImage": "robert_johnson_image.jpg",
+      "address": "789 Pine Lane, Villageton",
+      "dob": "1978-12-10",
+      "gender": "male",
+      "createdAt": "2023-11-25T00:00:00Z"
+    },
+    {
+      "name": "Emily Brown",
+      "class": "History",
+      "displayImage": "emily_brown_image.jpg",
+      "address": "101 Cedar Road, Hamletville",
+      "dob": "1982-03-25",
+      "gender": "female",
+      "createdAt": "2023-11-25T00:00:00Z"
+    },
+    {
+      "name": "Michael Wilson",
+      "class": "Physical Education",
+      "displayImage": "michael_wilson_image.jpg",
+      "address": "222 Maple Street, Suburbia",
+      "dob": "1975-07-05",
+      "gender": "male",
+      "createdAt": "2023-11-25T00:00:00Z"
+    }
+  ]
+}
