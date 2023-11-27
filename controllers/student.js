@@ -55,7 +55,7 @@ exports.addStudent = catchASync(async (req, res, next) => {
 //  read document of a particular student
 exports.getStudent = catchASync(async (req, res, next) => {
   const { id } = req.params;
-  const student = await Student.findById(id).populate("parent_id");
+  const student = await Student.findById(id);
 
   if (!student) {
     throw new AppError("Student not found", 404);

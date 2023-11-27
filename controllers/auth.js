@@ -15,7 +15,7 @@ exports.register = catchASync(async (req, res, next) => {
   // validating inputs
   const { value, error } = await registerSchema.validate(req.body);
   if (error) {
-    throw new AppError(error.details[0].message, 422);
+    throw new AppError(error.details[0].message, 400);
   }
 
   // checking existing user
@@ -45,7 +45,7 @@ exports.login = catchASync(async (req, res, next) => {
   // validating inputs
   const { error } = await loginSchema.validate(req.body);
   if (error) {
-    throw new AppError(error.details[0].message, 422);
+    throw new AppError(error.details[0].message, 4);
   }
 
   //check existing user

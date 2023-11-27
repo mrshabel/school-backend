@@ -12,7 +12,7 @@ const studentSchema = new mongoose.Schema({
   parent: {
     name: String,
     address: String,
-    email: { type: String, unique: true },
+    email: { type: String, unique: true, sparse: true },
     phone: String,
     occupation: String,
     gender: {
@@ -25,5 +25,16 @@ const studentSchema = new mongoose.Schema({
     default: Date.now(),
   },
 });
+
+//check for query execution time
+// studentSchema.pre("save", function () {
+//   this._startTime = Date.now();
+// });
+
+// studentSchema.post("save", function () {
+//   if (this._startTime !== null) {
+//     console.log("Runtime in MS: ", Date.now() - this._startTime);
+//   }
+// });
 
 module.exports = Student = mongoose.model("Student", studentSchema);

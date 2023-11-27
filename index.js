@@ -1,23 +1,26 @@
 require("dotenv").config();
-require("./utils/db").dbConnect();
-const express = require("express");
-const cors = require("cors");
-const customError = require("./middleware/customError");
-const auth = require("./routes/auth");
-const user = require("./routes/user");
-const student = require("./routes/student");
+const mongoose = require("mongoose");
 
-const app = express();
-app.use(express.json(), cors(), express.urlencoded({ extended: true }));
+//handle exceptions (errors and bugs)
+process.on("uncaughtException", (error) => {
+  console.log("Uncaught Exception! Shutting down...");
+  console.log(error.name, error.message);
+  process.exit(1);
+});
 
-//  routes here
-app.use("/api", auth);
-app.use("/api", user);
-app.use("/api/students", student);
+const app = require("./app");
 
-//global error handler
-app.use(customError);
+mongoose
+  .connect(process.env.DB_URL)
+  .then(() => console.log("Successfully connected to database"));
 
-app.listen(process.env.PORT || 8080, () => {
+const server = app.listen(process.env.PORT || 8080, () => {
   console.log(`server running on port ${process.env.PORT}`);
+});
+
+//handle rejected promises
+process.on("unhandledRejection", (error) => {
+  console.log("Unhandled Rejection! Shutting down...");
+  console.log(error.name, error.message);
+  server.close(() => process.exit(1));
 });
