@@ -18,30 +18,34 @@ exports.loginSchema = Joi.object({
 });
 
 // validating student signup
-exports.addStudentSchema = Joi.object({
+exports.studentSchema = Joi.object({
   name: Joi.string().lowercase().allow(" ").min(3).max(30).required(),
-  class: Joi.string().min(1).required(),
-  dob: Joi.date().required(),
-  phone: Joi.string().min(10).max(10).required(),
+  class: Joi.number().min(1).max(9).required(),
   displayImage: Joi.any(),
-  address: Joi.string().lowercase().required(),
+  dob: Joi.date().required(),
   gender: Joi.string().lowercase().valid("male", "female").required(),
-  parentName: Joi.string().lowercase().allow(" ").min(3).max(30).required(),
-  parentEmail: Joi.string().lowercase().email().required(),
-  parentOccupation: Joi.string().lowercase().min(3).required(),
-  parentGender: Joi.string().lowercase().valid("male", "female").required(),
+  parent: Joi.object().keys({
+    name: Joi.string().lowercase().allow(" ").min(3).max(30).required(),
+    address: Joi.string().lowercase().required(),
+    email: Joi.string().lowercase().email().required(),
+    phone: Joi.string().min(10).max(10).required(),
+    occupation: Joi.string().lowercase().min(3).required(),
+    gender: Joi.string().lowercase().valid("male", "female").required(),
+  }),
 });
 
 exports.updateStudentSchema = Joi.object({
   name: Joi.string().lowercase().allow(" ").min(3).max(30),
-  class: Joi.string().min(1),
-  dob: Joi.date(),
-  phone: Joi.string().min(10).max(10),
+  class: Joi.number().min(1).max(9),
   displayImage: Joi.any(),
-  address: Joi.string().lowercase(),
+  dob: Joi.date(),
   gender: Joi.string().lowercase().valid("male", "female"),
-  parentName: Joi.string().lowercase().allow(" ").min(3).max(30),
-  parentEmail: Joi.string().lowercase().email(),
-  parentOccupation: Joi.string().lowercase().min(3),
-  parentGender: Joi.string().lowercase().valid("male", "female"),
+  parent: Joi.object().keys({
+    name: Joi.string().lowercase().allow(" ").min(3).max(30),
+    address: Joi.string().lowercase(),
+    email: Joi.string().lowercase().email(),
+    phone: Joi.string().min(10).max(10),
+    occupation: Joi.string().lowercase().min(3),
+    gender: Joi.string().lowercase().valid("male", "female"),
+  }),
 });

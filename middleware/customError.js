@@ -27,8 +27,6 @@ const handleDevelopmentError = (error, req, res) => {
 //production error handling
 const handleProductionError = (error, req, res) => {
   if (req.originalUrl.startsWith("/api")) {
-    console.log("Error: \n ", error);
-
     return res.status(error.statusCode).json({
       status: error.status,
       message: error.message,
