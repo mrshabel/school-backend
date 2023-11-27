@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const catchASync = require("../utils/catchAsync");
-const appError = require("../utils/appError");
+const AppError = require("../utils/appError");
 const {
   securePassword,
   comparePassword,
@@ -15,14 +15,14 @@ exports.register = catchASync(async (req, res, next) => {
   // validating inputs
   const { value, error } = await registerSchema.validate(req.body);
   if (error) {
-    throw new appError(error.details[0].message, 422);
+    throw new AppError(error.details[0].message, 422);
   }
 
   // checking existing user
   const existingUser = await User.findOne({ username });
 
   if (existingUser) {
-    throw new appError("User already exists", 401);
+    throw new AppError("User already exists", 401);
   }
 
   // hashing password
@@ -45,20 +45,20 @@ exports.login = catchASync(async (req, res, next) => {
   // validating inputs
   const { error } = await loginSchema.validate(req.body);
   if (error) {
-    throw new appError(error.details[0].message, 422);
+    throw new AppError(error.details[0].message, 422);
   }
 
   //check existing user
   const existingUser = await User.findOne({ username });
   if (!existingUser) {
-    throw new appError("no user found", 404);
+    throw new AppError("no user found", 404);
   }
 
   //comparing passwords
   const passwordMatch = await comparePassword(password, existingUser.password);
 
   if (!passwordMatch) {
-    throw new appError("username or password invalid", 401);
+    throw new AppError("username or password invalid", 401);
   }
 
   // generating token

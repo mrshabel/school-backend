@@ -4,15 +4,21 @@ const studentSchema = new mongoose.Schema({
   name: String,
   class: String,
   displayImage: String,
-  address: String,
   dob: Date,
   gender: {
     type: String,
     enum: ["male", "female"],
   },
   parent: {
-    type: mongoose.Types.ObjectId,
-    ref: "Parent",
+    name: String,
+    address: String,
+    email: { type: String, unique: true },
+    phone: String,
+    occupation: String,
+    gender: {
+      type: String,
+      enum: ["male", "female"],
+    },
   },
   createdAt: {
     type: Date,

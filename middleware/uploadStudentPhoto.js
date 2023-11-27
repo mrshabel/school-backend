@@ -1,10 +1,9 @@
 const multer = require("multer");
-const path = require("path");
-const appError = require("../utils/appError");
+const AppError = require("../utils/appError");
 
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../client/public/images/students");
+    cb(null, "./public/img/student");
   },
   filename: (req, file, cb) => {
     //name-class-currentTime.ext
@@ -20,7 +19,7 @@ const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb(new appError("Only images are accepted", 400), false);
+    cb(new AppError("Only images are accepted", 400), false);
   }
 };
 
