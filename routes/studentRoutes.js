@@ -6,10 +6,12 @@ const {
   deleteStudent,
   getAllStudents,
   createStudent,
-} = require("../controllers/student");
+} = require("../controllers/studentController");
 const { restrictsTo } = require("../middleware/auth");
-const { uploadStudentPhoto } = require("../middleware/uploadStudentPhoto");
-const { setStudentParents } = require("../middleware/student");
+const {
+  setStudentParents,
+  uploadStudentPhoto,
+} = require("../middleware/student");
 
 // router.route("/").get(restrictsTo, getAllStudents);
 router

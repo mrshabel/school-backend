@@ -1,4 +1,4 @@
-const Student = require("../models/student");
+const Student = require("../models/studentModel");
 const { studentSchema, updateStudentSchema } = require("../utils/validation");
 const factory = require("./handlerFactory");
 

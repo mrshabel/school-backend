@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const customError = require("./middleware/customError");
-const auth = require("./routes/auth");
-const user = require("./routes/user");
-const student = require("./routes/student");
+const auth = require("./routes/authRoutes");
+const user = require("./routes/userRoutes");
+const student = require("./routes/studentRoutes");
 
 const app = express();
 app.use(express.json(), cors(), express.urlencoded({ extended: true }));
