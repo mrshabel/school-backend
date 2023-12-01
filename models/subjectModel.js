@@ -7,4 +7,6 @@ const subjectSchema = new mongoose.Schema({
   teacher: { type: mongoose.Types.ObjectId, ref: "Teacher" },
 });
 
+subjectSchema.index({ name: 1, class: 1 }, { unique: true });
+
 module.exports = Subject = mongoose.model("Subject", subjectSchema);

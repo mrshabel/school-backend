@@ -13,4 +13,6 @@ const classSchema = mongoose.Schema({
   },
 });
 
+classSchema.index({ name: 1, dateFrom: 1 }, { unique: true });
+
 module.exports = ClassModel = mongoose.model("Class", classSchema);

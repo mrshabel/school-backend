@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const studentSchema = new mongoose.Schema({
   name: String,
   class: { type: mongoose.Types.ObjectId, ref: "Class" },
+  results: [{ type: mongoose.Types.ObjectId, ref: "Result" }],
   displayImage: String,
   dob: Date,
   gender: {

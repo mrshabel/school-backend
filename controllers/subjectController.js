@@ -1,4 +1,4 @@
-const Subject = require("../models/subjectSchema");
+const Subject = require("../models/subjectModel");
 const {
   createSubjectSchema,
   updateSubjectSchema,
