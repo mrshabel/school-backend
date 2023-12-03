@@ -4,13 +4,17 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.create = (Model, validator) =>
   catchAsync(async (req, res, next) => {
+    if (req.file) {
+      req.body.displayImage = req.file.filename;
+    }
+
     const { value, error } = validator.validate(req.body);
     if (error) {
       throw new AppError(error.details[0].message, 400);
     }
     const data = await Model.create(value);
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "Document created successfully",
       data,
     });
@@ -28,7 +32,7 @@ exports.update = (Model, validator) =>
 
     if (!data) throw new AppError("No document found with that ID", 404);
 
-    return res.status(201).json({
+    return res.status(200).json({
       message: "Document updated successfully",
       data,
     });
@@ -38,11 +42,11 @@ exports.delete = (Model) =>
   catchAsync(async (req, res, next) => {
     const data = await Model.findByIdAndDelete(req.params.id);
 
-    if (!data) new AppError("No document found with that ID", 404);
+    if (!data) throw new AppError("No document found with that ID", 404);
 
-    return res.status(201).json({
+    return res.status(200).json({
       message: "Document deleted successfully",
-      data,
+      data: null,
     });
   });
 
@@ -51,7 +55,7 @@ exports.getOne = (Model) =>
     const data = await Model.findById(req.params.id).select("-__v");
     if (!data) throw new AppError("No document found with that ID", 404);
 
-    return res.status(201).json({
+    return res.status(200).json({
       message: "Document retrieved successfully",
       data,
     });
@@ -71,7 +75,7 @@ exports.getAll = (Model) =>
       throw new AppError("No document found", 404);
     }
 
-    return res.status(201).json({
+    return res.status(200).json({
       status: "ok",
       message: "Documents retrieved successfully",
       data: {
