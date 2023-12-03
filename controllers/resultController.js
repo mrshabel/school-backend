@@ -14,3 +14,9 @@ exports.getAllResult = factory.getAll(Result);
 exports.updateResult = factory.update(Result, updateResultSchema);
 
 exports.deleteResult = factory.delete(Result);
+
+exports.setStudentId = async (req, res, next) => {
+  if (!req.body.studentId) req.body.student = req.params.studentId;
+
+  next();
+};

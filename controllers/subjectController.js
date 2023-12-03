@@ -14,3 +14,9 @@ exports.getAllSubject = factory.getAll(Subject);
 exports.updateSubject = factory.update(Subject, updateSubjectSchema);
 
 exports.deleteSubject = factory.delete(Subject);
+
+exports.setClassId = async (req, res, next) => {
+  if (!req.body.class) req.body.class = req.params.ClassId;
+
+  next();
+};
