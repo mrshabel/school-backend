@@ -12,17 +12,33 @@ const {
   setStudentParents,
   uploadStudentPhoto,
 } = require("../middleware/student");
+const resultRoutes = require("./resultRoutes");
+const deleteImageOnError = require("../middleware/deleteImageOnError");
 
-// router.route("/").get(restrictsTo, getAllStudents);
+// nested routes
+router.use("/:studentId/results", resultRoutes);
+
 router
   .route("/")
   .get(restrictsTo, getAllStudents)
-  .post(restrictsTo, uploadStudentPhoto, setStudentParents, createStudent);
+  .post(
+    restrictsTo,
+    uploadStudentPhoto,
+    setStudentParents,
+    createStudent,
+    deleteImageOnError
+  );
 
 router
   .route("/:id")
   .get(restrictsTo, getStudent)
-  .patch(restrictsTo, uploadStudentPhoto, setStudentParents, updateStudent)
+  .patch(
+    restrictsTo,
+    uploadStudentPhoto,
+    setStudentParents,
+    updateStudent,
+    deleteImageOnError
+  )
   .delete(restrictsTo, deleteStudent);
 
 module.exports = router;
