@@ -34,7 +34,7 @@ exports.register = catchASync(async (req, res, next) => {
   await user.save();
 
   res
-    .status(200)
+    .status(201)
     .json({ status: "ok", message: "User registered successfully", user });
 });
 
