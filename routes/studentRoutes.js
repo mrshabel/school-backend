@@ -15,14 +15,14 @@ const {
 const resultRoutes = require("./resultRoutes");
 const deleteImageOnError = require("../middleware/deleteImageOnError");
 
+router.use(restrictsTo)
 // nested routes
 router.use("/:studentId/results", resultRoutes);
 
 router
   .route("/")
-  .get(restrictsTo, getAllStudents)
+  .get(getAllStudents)
   .post(
-    restrictsTo,
     uploadStudentPhoto,
     setStudentParents,
     createStudent,
@@ -31,14 +31,13 @@ router
 
 router
   .route("/:id")
-  .get(restrictsTo, getStudent)
+  .get(getStudent)
   .patch(
-    restrictsTo,
     uploadStudentPhoto,
     setStudentParents,
     updateStudent,
     deleteImageOnError
   )
-  .delete(restrictsTo, deleteStudent);
+  .delete(deleteStudent);
 
 module.exports = router;

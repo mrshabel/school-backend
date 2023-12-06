@@ -5,27 +5,26 @@ const teacherController = require("../controllers/teacherController");
 const { uploadTeacherPhoto } = require("../middleware/teacher");
 const deleteImageOnError = require("../middleware/deleteImageOnError");
 
+router.use(restrictsTo)
 router
   .route("/")
   .post(
-    restrictsTo,
     uploadTeacherPhoto,
     teacherController.setClassId,
     teacherController.createTeacher,
     deleteImageOnError
   )
-  .get(restrictsTo, teacherController.getAllTeacher);
+  .get(teacherController.getAllTeacher);
 
 router
   .route("/:id")
-  .get(restrictsTo, teacherController.getTeacher)
+  .get(teacherController.getTeacher)
   .patch(
-    restrictsTo,
     uploadTeacherPhoto,
     teacherController.setClassId,
     teacherController.updateTeacher,
     deleteImageOnError
   )
-  .delete(restrictsTo, teacherController.deleteTeacher);
+  .delete(teacherController.deleteTeacher);
 
 module.exports = teacher = router;
