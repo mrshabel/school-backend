@@ -22,7 +22,7 @@ exports.studentSchema = Joi.object({
   name: Joi.string().lowercase().allow(" ").min(3).max(30).required(),
   class: Joi.string().required(),
   displayImage: Joi.any(),
-  dob: Joi.date().iso().required(),
+  dob: Joi.date().required(),
   gender: Joi.string().lowercase().valid("male", "female").required(),
   parent: Joi.object().keys({
     name: Joi.string().lowercase().allow(" ").min(3).max(30).required(),
@@ -38,7 +38,7 @@ exports.updateStudentSchema = Joi.object({
   name: Joi.string().lowercase().allow(" ").min(3).max(30),
   class: Joi.number().min(1).max(9),
   displayImage: Joi.any(),
-  dob: Joi.date().iso(),
+  dob: Joi.date(),
   gender: Joi.string().lowercase().valid("male", "female"),
   // parent: Joi.object().keys({
   //   name: Joi.string().lowercase().allow(" ").min(3).max(30),
@@ -54,14 +54,14 @@ exports.createClassSchema = Joi.object({
   name: Joi.string()
     .valid("1", "2", "3", "4", "5", "6", "7", "8", "9")
     .required(),
-  dateFrom: Joi.date().iso().required(),
-  dateTo: Joi.date().iso().required(),
+  dateFrom: Joi.date().required(),
+  dateTo: Joi.date().required(),
 });
 
 exports.updateClassSchema = Joi.object({
   name: Joi.string().valid("1", "2", "3", "4", "5", "6", "7", "8", "9"),
-  dateFrom: Joi.date().iso(),
-  dateTo: Joi.date().iso(),
+  dateFrom: Joi.date(),
+  dateTo: Joi.date(),
 });
 
 exports.createSubjectSchema = Joi.object({
@@ -85,7 +85,7 @@ exports.createTeacherSchema = Joi.object({
   email: Joi.string().lowercase().email().required(),
   displayImage: Joi.any(),
   address: Joi.string().lowercase().allow(" ").required(),
-  dob: Joi.date().iso().required(),
+  dob: Joi.date().required(),
   gender: Joi.string().lowercase().valid("male", "female").required(),
 });
 
@@ -96,7 +96,7 @@ exports.updateTeacherSchema = Joi.object({
   email: Joi.string().lowercase().email(),
   displayImage: Joi.any(),
   address: Joi.string().lowercase().allow(" "),
-  dob: Joi.date().iso(),
+  dob: Joi.date(),
   gender: Joi.string().lowercase().valid("male", "female"),
 });
 
